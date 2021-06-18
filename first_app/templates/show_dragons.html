@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Show all Dragons</title>
+</head>
+<body>
+    <h1>Hi {{rider.name}}! Welcome.</h1>
+    <h1>Show all Dragons</h1>
+
+    <a href="/dragons/logout">Logout</a>
+    
+    <table class="table table-success table-hover">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th># of Wings</th>
+            <th>Magic?</th>
+            <th>Rider</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {% for dragon in all_dragons %}
+            <tr>
+                <td>{{dragon.id}}</td>
+                <td>{{dragon.name}}</td>
+                <td>{{dragon.num_of_wings}}</td>
+                <td>{{dragon.has_magic}}</td>
+                <td>{{dragon.my_rider.name}}</td>
+                <td><a href="/dragons/{{dragon.id}}">Show</a> | 
+                    
+                    {% if rider in dragon.riders_that_like_me.all %}
+                    <a href="/dragons/{{dragon.id}}/unlike">Unlike</a> {{dragon.riders_that_like_me.count}} | 
+                    {% else %}
+                    <a href="/dragons/{{dragon.id}}/like">Like</a> {{dragon.riders_that_like_me.count}} | 
+                    {% endif %}
+                    
+                    {% if rider.id == dragon.my_rider.id %}
+                    <form action="dragons/{{dragon.id}}/destroy" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete">
+                    </form>
+                    | <a href="/dragons/{{dragon.id}}/edit">Edit</a>
+                    {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</body>
+</html>

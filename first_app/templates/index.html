@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Dragon Website</title>
+</head>
+<body>
+    <h1>Welcome to the Dragon Website Login Page</h1>
+    
+    <h1>REGISTER HERE</h1>
+    {% if messages %}
+    <ul>    
+        {% for message in messages %}    
+            <li>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %} 
+    <form action="/register" method="POST">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name">
+
+        <label for="guild">Guild</label>
+        <input type="text" name="guild">
+
+        <label for="is_trained">Training?</label>
+        <label for="False">No: </label>
+        <input type="radio" name="is_trained" value="False" checked>
+        <label for="True">Yes: </label>
+        <input type="radio" name="is_trained" value="True">
+
+        <label for="email">Email</label>
+        <input type="email" name="email">
+
+        <label for="password">Password</label>
+        <input type="password" name="password">
+
+        <label for="password_confirm">Confirm Pasword</label>
+        <input type="password" name="password_confirm">
+
+        <input type="submit" value="Register">
+
+    </form>
+
+    <h1>LOGIN</h1>
+    <form action="/login" method="POST">
+        {% csrf_token %}
+    
+        <label for="email">Email</label>
+        <input type="email" name="email">
+
+        <label for="password">Password</label>
+        <input type="password" name="password">
+
+        <input type="submit" value="Login">
+
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+ Week 5 Day 2 -- Login and Registration
+
+1) Delete/Destroy revisited
+    -<a> vs <form>
+    -change to form && protect from GET requests
+    -How to make Form Submit Button look like link? CSS (not gonna demo this)
+
+2) Registration --- just creating a User with Validations
+    -Regular Expression Validations (so far, using only for EMAIL)
+        -import re (regular expression library)
+        -regex101.com --- recommended resource (regex is HARD y'all)
+    -Multiple Validation Methods (and why!)
+    -Bcrypt library
+        -Trust No One! Hashing and Hiding information is good to hide from Databases/Companies/Hackers
+        -pip install bcrypt
+        -Encodes User input -> Salts (adds mumbo-jumbo chars) -> Decodes to be in a jumbled state in DB
+    -Using session
+
+3) Login --- more of a Validation that ♫ you are who you say you are... a superstar... then have no fear, Log-in is here ♪
+    -Process of a Login
+    -Uniqueness Validation & Password 
+        -Encode Password input -> Salts -> now can be compared to Encoded saved string from DB.
+    -Logout & Permissions
+
+—Try to tackle Semi-Restful TV Shows Validated and beyond, 
+get your Login and Registration Assignment Checked in a Code Review. 
+You can use that Assignments for all other HW and Exam by reusing code. 
+So, make sure it works well!
+
+You can take the Exam anytime between 6/18 and 6/30. No later! 

@@ -1,0 +1,23 @@
+ Welcome to Week 4! 
+
+HW: Catch up and First 2 Assignments of Django ORM (Remember you can skip MySQL if you're behind)
+Reading: Read up to Books/Authors(Shell)
+
+ We are taking next week off class-wise -- Monday Holiday, No class. No TAs.
+ Yes TAs (Tue-Sun)
+[I will not be available next week for 1:1s, MM, Discord, etc; I personally will not be here this Friday]
+
+DB SQL Lite ---
+
+1) Looking at models.py
+    - Creating a Dragon model
+    - Adding Attributes
+    - Migrating AKA Creating our Database (DB)
+2) Going into the Shell
+    - What is CRUD?
+    - C R U D with our Dragon (Reading last)
+3) Taking it to the Template
+    - Importing our Class into views.py
+    - Using Context to query
+    - Using Django Templating Engine to write for loops and if statement
+        - This is to manipulate our DB Data! 

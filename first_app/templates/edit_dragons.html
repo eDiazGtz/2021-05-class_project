@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit {{dragon.name}}</title>
+</head>
+<body>
+    <h1>Edit {{dragon.name}}</h1>
+
+    <form action="/dragons/{{dragon.id}}/update" method="POST">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{dragon.name}}">
+
+        <label for="num_of_wings">Number of Wings</label>
+        <input type="text" name="num_of_wings" value="{{dragon.num_of_wings}}">
+
+        {% if dragon.has_magic == True %}
+        <label for="has_magic">Has Magic?</label>
+        <label for="false">No: </label>
+        <input type="radio" name="has_magic" value="False">
+        <label for="true">Yes: </label>
+        <input type="radio" name="has_magic" value="True" checked>
+        {% else %}
+        <label for="has_magic">Has Magic?</label>
+        <label for="false">No: </label>
+        <input type="radio" name="has_magic" value="False" checked>
+        <label for="true">Yes: </label>
+        <input type="radio" name="has_magic" value="True">
+        {% endif %}
+
+        <label for="rider">Choose a Rider</label>            
+        <select name="rider_id">
+            <option value="{{dragon.my_rider.id}}">{{dragon.my_rider.name}}</option>
+            {% for rider in all_riders %}
+            <option value="{{rider.id}}">{{rider.name}}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Update Dragon">
+
+    </form>
+
+    <a href="/dragons/{{dragon.id}}/destroy">Delete</a>
+</body>
+</html>

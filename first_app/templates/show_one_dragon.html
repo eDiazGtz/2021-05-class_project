@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information on {{dragon.name}}</title>
+</head>
+<body>
+    <h3>Information on {{dragon.name}}</h3>
+    <ul>
+        <li>ID: {{dragon.id}}</li>
+        <li>Name: {{dragon.name}}</li>
+        <li>Number of Wings: {{dragon.num_of_wings}}</li>
+        <li>Magic? {{dragon.has_magic}}</li>
+        <li>Rider Name: {{dragon.my_rider.name}}</li>
+        <li><a href="/dragons/{{dragon.id}}/edit">Edit</a> | <a href="/dragons/{{dragon.id}}/like">Like</a> {{dragon.riders_that_like_me.count}} | <a href="/dragons/{{dragon.id}}/destroy">Delete</a></li>
+    </ul>
+                
+</body>
+</html>

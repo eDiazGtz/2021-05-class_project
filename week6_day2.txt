@@ -1,0 +1,92 @@
+ Week 6 Day 1 Overview of Lecture
+        - Exam Friday! :) Woo-Hoo!
+        - Getting through as much review, questions, and Black Belt Functionality as we can
+        Send me your IP Address - 127.0.0.1 
+
+        ediazgutierrez@codingdojo.com
+
+        24-Hours from start --- input code, time starts
+        Monday cutoff. On Monday --- inclusive
+
+
+Exam Questions?
+        FAQ - Don't worry about multiple apps, CSS is secondary.
+
+Logout 
+        What does it mean to be "logged in"?
+        Session flush/clear
+
+Permission to be on site/page
+        How can we check if we're logged in?
+        How can we use this to our advantage?
+
+Auto-Setting Owner to be logged user
+        Get rid of Drop Down
+        Pass rider id through context using sessions
+        Pass rider id through Hidden
+        <input type="hidden" name="rider_id" value="{{rider_id}}">
+
+Only Delete/Edit if Owner
+        Need rider_id of logged user passed through context via sessions
+        When coming up with buttons like Edit/Delete need if Check
+        {% if rider_id == dragon.my_rider.id %}
+        #We can see Delete/Edit buttons
+        {% elif %} / {% else %}
+        #We see Like buttons / message / or nothing
+        {% endif %}
+        --------
+        Don't forget to add these checks in the BACK-END as well. 
+        Front-end validations and if checks can possibly be changed in the Inspect tool
+
+Unique Email Check
+        # #Check if email exists in DB
+        # email_in_use = Rider.objects.filter(email=postData['email']) 
+        # if email_in_use:
+        #     errors['unique'] = "Email already in use."
+
+Like/unlike
+        {% if rider in dragon.riders_that_like_me.all %}
+        <a href="/dragons/{{dragon.id}}/unlike">Unlike</a> {{dragon.riders_that_like_me.count}} | 
+        {% else %}
+        #like button
+        {% endif %}
+
+
+Counting
+        {{dragon.riders_that_like_me.count}}
+        How many Dragons do I like? (In profile page) 
+        #rider.dragons_liked.count()
+
+
+order_by | ascending/descending
+        using order_by will sort a list in a "natural way" "a-z/0-9/etc"
+        However, order_by() takes in a field (attribute)
+        In order to sort by something like Likes or riders_that_like_me
+        we need to set that number to a field. 
+        We don't want to change our model so we will use .annotate() to add a temp field specific this method
+        #from django.db.models import Count
+        #Dragon.objects.annotate(likes=Count('riders_that_like_me')).order_by('likes')   
+        '-likes' add a `-` inside string to reverse order. 
+class User:
+
+Self Joins - friends = models.ManyToMany("User") 
+
+my_user = User.objects.get(id=1)
+my_user.friends -> List Users
+
+my_friends = ...
+my_friends.friends -> List Users
+
+Rider
+Dragon
+dragon.riders_that_like_me
+.add(rider)
+
+me
+my_friend
+me.friend
+
+me.friends.add(my_friend)
+me.friends.remove(my_friend)
+
+Deployment
