@@ -8,14 +8,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Show all Dragons</title>
 </head>
-<body>
-    <h1>Hi {{rider.name}}! Welcome.</h1>
-    <h1>Show all Dragons</h1>
+<body class="bg-info m-2">
+    <h1 class="text-light">Hi {{rider.name}}! Welcome</h1>
+    <h1 class="text-light"><span class="text-warning">▲</span> Here are all the Dragons! <span class="text-warning">▲</span></h1>
 
-    <a href="/dragons/logout">Logout</a>
+    <p class="mb-2"><a href="/dragons" class="btn btn-warning">Home</a> |
+    <a href="/dragons/new" class="btn btn-outline-warning">Create A Dragon</a> | 
+    <a href="/dragons/logout" class="btn btn-outline-warning">Logout</a></p>
+
     
-    <table class="table table-success table-hover">
-        <thead>
+    <table class="table table-primary table-hover">
+        <thead class="thead-dark">
             <th>ID</th>
             <th>Name</th>
             <th># of Wings</th>
@@ -27,25 +30,26 @@
             {% for dragon in all_dragons %}
             <tr>
                 <td>{{dragon.id}}</td>
-                <td>{{dragon.name}}</td>
+                <td><a class="btn btn-primary" href="/dragons/{{ dragon.id }}">{{dragon.name}}</a></td>
                 <td>{{dragon.num_of_wings}}</td>
                 <td>{{dragon.has_magic}}</td>
                 <td>{{dragon.my_rider.name}}</td>
-                <td><a href="/dragons/{{dragon.id}}">Show</a> | 
-                    
-                    {% if rider in dragon.riders_that_like_me.all %}
-                    <a href="/dragons/{{dragon.id}}/unlike">Unlike</a> {{dragon.riders_that_like_me.count}} | 
-                    {% else %}
-                    <a href="/dragons/{{dragon.id}}/like">Like</a> {{dragon.riders_that_like_me.count}} | 
-                    {% endif %}
+                <td><a href="/dragons/{{dragon.id}}" class="btn btn-outline-primary">Show</a> | 
                     
                     {% if rider.id == dragon.my_rider.id %}
-                    <form action="dragons/{{dragon.id}}/destroy" method="POST">
+                    <form action="dragons/{{dragon.id}}/destroy" method="POST" class="d-inline">
                         {% csrf_token %}
-                        <input type="submit" value="Delete">
+                        <input class="btn btn-outline-primary" type="submit" value="Delete">
                     </form>
-                    | <a href="/dragons/{{dragon.id}}/edit">Edit</a>
+                    | <a class="btn btn-outline-primary" href="/dragons/{{dragon.id}}/edit">Edit</a>
                     {% endif %}
+
+                    {% if rider in dragon.riders_that_like_me.all %}
+                    <a class="btn btn-outline-primary" href="/dragons/{{dragon.id}}/unlike">Unlike</a> {{dragon.riders_that_like_me.count}} | 
+                    {% else %}
+                    <a class="btn btn-primary" href="/dragons/{{dragon.id}}/like">Like</a> {{dragon.riders_that_like_me.count}} | 
+                    {% endif %}
+                    
             </tr>
             {% endfor %}
         </tbody>

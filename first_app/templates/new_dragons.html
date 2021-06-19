@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=4, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>New Dragon</title>
 </head>
-<body>
-    <h1>Make a New Dragon</h1>
+<body class="bg-info m-2">
+    <h1 class="text-light">Make a New Dragon</h1>
+
+    <p class="mb-2"><a href="/dragons" class="btn btn-outline-warning">Home</a> |
+        <a href="/dragons/new" class="btn btn-warning">Create A Dragon</a> | 
+        <a href="/dragons/logout" class="btn btn-outline-warning">Logout</a></p>
+    
     {% if messages %}
     <ul>    
         {% for message in messages %}    
@@ -17,21 +23,26 @@
 {% endif %}
     <form action="/dragons/create" method="POST">
         {% csrf_token %}
-        <label for="name">Name</label>
-        <input type="text" name="name">
+        <div class="form-group">
 
-        <label for="num_of_wings">Number of Wings</label>
-        <input type="text" name="num_of_wings">
+            <label for="name" class="text-light">Name</label>
+            <input type="text" name="name" class="form-control">
+    
+            <label for="num_of_wings" class="text-light">Number of Wings</label>
+            <input type="text" name="num_of_wings" class="form-control">
 
-        <label for="has_magic">Has Magic?</label>
-        <label for="false">No: </label>
-        <input type="radio" name="has_magic" value="False" checked>
-        <label for="true">Yes: </label>
-        <input type="radio" name="has_magic" value="True">
-        
-        <input type="hidden" name="rider_id" value="{{rider.id}}">
+            <br>
+            <p class="text-light d-inline">Has Magic?</p>
+            <label for="has_magic" class="text-light">No: </label>
+            <input type="radio" name="has_magic" value="False" checked>
+            <label for="has_magic" class="form-check-label text-light">Yes: </label>
+            <input type="radio" name="has_magic" value="True">
+            
+            <input type="hidden" name="rider_id" value="{{rider.id}}">
+            <br>
+            <input type="submit" value="Create Dragon">
 
-        <input type="submit" value="Create Dragon">
+        </div>
     </form>
 
 </body>

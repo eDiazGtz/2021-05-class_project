@@ -4,59 +4,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Class Dragon Website</title>
 </head>
-<body>
-    <h1>Welcome to the Dragon Website Login Page</h1>
+<body class="bg-info m-2">
+    <h1 class="text-light">Welcome to the Dragon Website Login Page</h1>
     
-    <h1>REGISTER HERE</h1>
     {% if messages %}
     <ul>    
         {% for message in messages %}    
-            <li>{{ message }}</li>    
+        <li>{{ message }}</li>    
         {% endfor %}
     </ul>
     {% endif %} 
-    <form action="/register" method="POST">
-        {% csrf_token %}
-        <label for="name">Name</label>
-        <input type="text" name="name">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-outline d-inline">REGISTER HERE</h1>
+            <form action="/register" method="POST" class="ml-2">
+                {% csrf_token %}
+                <div class="form-group">
+        
+                    <label for="name" class="text-light">Name</label>
+                    <input type="text" name="name" class="form-control">
+            
+                    <label for="guild" class="text-light">Guild</label>
+                    <input type="text" name="guild" class="form-control">
+            
+                    <p class="text-light">Training?</p>
+                
+                    <label for="is_trained" class="form-check-label" class="text-light">No: </label>
+                    <input type="radio" name="is_trained" value="False" checked>
+                    <br>
+                    <label for="is_trained" class="form-check-label" class="text-light">Yes: </label>
+                    <input type="radio" name="is_trained" value="True">
+                
+                    <br>
+                    <label for="email" class="text-light">Email</label>
+                    <input type="email" name="email" class="form-control">
+            
+                    <label for="password" class="text-light">Password</label>
+                    <input type="password" name="password" class="form-control">
+            
+                    <label for="password_confirm" class="text-light">Confirm Pasword</label>
+                    <input type="password" name="password_confirm" class="form-control">
+            
+                    <input type="submit" value="Register" class="btn btn-primary mt-2">
+                
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <h1 class="text-outline d-inline">LOGIN</h1>
+            <form action="/login" method="POST" class="mr-2">
+                {% csrf_token %}
+            <div class="form-group">
+        
+                <label for="email" class="text-light">Email</label>
+                <input type="email" name="email" class="form-control">
+        
+                <label for="password" class="text-light">Password</label>
+                <input type="password" name="password" class="form-control">
+        
+                <input type="submit" value="Login" class="btn btn-warning mt-2">
+            
+            </div>
+        
+            </form>
+        </div>
+    </div>
 
-        <label for="guild">Guild</label>
-        <input type="text" name="guild">
-
-        <label for="is_trained">Training?</label>
-        <label for="False">No: </label>
-        <input type="radio" name="is_trained" value="False" checked>
-        <label for="True">Yes: </label>
-        <input type="radio" name="is_trained" value="True">
-
-        <label for="email">Email</label>
-        <input type="email" name="email">
-
-        <label for="password">Password</label>
-        <input type="password" name="password">
-
-        <label for="password_confirm">Confirm Pasword</label>
-        <input type="password" name="password_confirm">
-
-        <input type="submit" value="Register">
-
-    </form>
-
-    <h1>LOGIN</h1>
-    <form action="/login" method="POST">
-        {% csrf_token %}
-    
-        <label for="email">Email</label>
-        <input type="email" name="email">
-
-        <label for="password">Password</label>
-        <input type="password" name="password">
-
-        <input type="submit" value="Login">
-
-    </form>
 
 </body>
 </html>
